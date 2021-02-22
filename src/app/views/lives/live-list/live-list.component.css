@@ -1,3 +1,9 @@
+.mat-tab-group {
+  /* padding-top: 40px;
+  padding-left: 2%;
+  padding-right: 2%; */
+}
+
 .mat-card-live {
   border: 1px solid #cfd8dc;
   border-radius: 4px 3px 6px / 2px 4px;

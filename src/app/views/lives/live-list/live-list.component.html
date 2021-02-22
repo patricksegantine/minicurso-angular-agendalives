@@ -1,6 +1,6 @@
-<mat-tab-group mat-align-tabs="start" color="warn" backgroundColor="accent">
+<mat-tab-group class="mat-tab-group" mat-align-tabs="start" color="primary" backgroundColor="primary">
   <mat-tab label="PRÓXIMAS">
-    <div fxLayout="row wrap" fxLayoutAlign="start center" style="padding: 2%;">
+    <div *ngIf="!loading" fxLayout="row wrap" fxLayoutAlign="start center" style="padding: 2%;">
       <ng-container *ngFor="let live of nextLives" style="margin: 0.5%;">
         <mat-card
           class="mat-card-live"

@@ -1,8 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
+
 import { ResponsePageableDTO } from '../models/responsePageable';
-import * as uuid from 'uuid';
+import { LiveDTO } from '../models/live';
 
 @Injectable({
   providedIn: 'root'
@@ -25,17 +27,32 @@ export class LiveService {
     //return this.httpClient.get<ResponsePageableDTO>(`${this.apiURl}?flag=${flag}`);
   }
 
+  public postLives(live: any): Observable<LiveDTO> {
+    return this.httpClient.post<any>(this.apiURl, live, this.httpOptions);
+  }
+
   private fakeData(): Observable<ResponsePageableDTO> {
+    const contents = [ {
+      id: uuidv4(),
+      liveName: "Teste",
+      channelName: "",
+      liveDate: "",
+      liveTime: "",
+      liveLink: "",
+      registrationDate: ""
+    },
+    {
+      id: uuidv4(),
+      liveName: "Teste",
+      channelName: "",
+      liveDate: "",
+      liveTime: "",
+      liveLink: "",
+      registrationDate: ""
+    }];
+
     const response:ResponsePageableDTO = {
-      content:[ {
-        id: uuid.v4(),
-        liveName: "Teste",
-        channelName: "",
-        liveDate: "",
-        liveTime: "",
-        liveLink: "",
-        registrationDate: ""
-      }],
+      content: contents,
       first: false,
       last: false,
       number: 0,
@@ -50,7 +67,7 @@ export class LiveService {
     const observable = new Observable<ResponsePageableDTO>(subscriber => {
       setTimeout(() => {
         subscriber.next(response);
-      }, 1000);
+      }, 3000);
     });
 
     return observable;
